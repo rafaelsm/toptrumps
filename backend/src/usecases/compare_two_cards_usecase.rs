@@ -2,7 +2,7 @@ use crate::Card;
 use crate::Attribute;
 use crate::CardAttribute;
 
-pub fn compare<'a>(
+pub fn execute<'a>(
     first_card: &'a Card, 
     second_card: &'a Card,
     attribute: &Attribute,
@@ -39,12 +39,11 @@ mod test {
 
     use super::*;
 
-
     #[test]
     fn attribute_comparison_first_card_wins() {
         let first_card = card1(); 
         let second_card = card2(); 
-        let winner = compare(&first_card, &second_card, &Attribute::SPEED);
+        let winner = execute(&first_card, &second_card, &Attribute::SPEED);
         assert_eq!(&first_card, winner.unwrap())
     }
 
@@ -52,7 +51,7 @@ mod test {
     fn attribute_comparison_second_card_wins() {
         let first_card = card1(); 
         let second_card = card2(); 
-        let winner = compare(&first_card, &second_card, &Attribute::DEVELOPMENT);
+        let winner = execute(&first_card, &second_card, &Attribute::DEVELOPMENT);
         assert_eq!(&second_card, winner.unwrap())
     }
 
@@ -61,7 +60,7 @@ mod test {
     fn attribute_comparison_draw() {
         let first_card = card1();
         let second_card = card2();
-        let winner = compare(&first_card, &second_card, &Attribute::STAMINA);
+        let winner = execute(&first_card, &second_card, &Attribute::STAMINA);
         assert_eq!(None, winner)
     }
 
