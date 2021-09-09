@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Attribute {
     POWER,
     SPEED,
@@ -8,11 +8,12 @@ pub enum Attribute {
     DEVELOPMENT,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Card {
     id: String,
-    uuid: String,
-    name: String,
+    title: String,
+    subtitle: String,
+    description: String,
     toptrump: bool,
     image_url: String,
     attributes: Vec<CardAttribute>,
@@ -22,16 +23,18 @@ impl Card {
 
     pub fn new(
         id: String,
-        uuid: String,
-        name: String,
+        title: String,
+        subtitle: String,
+        description: String,
         toptrump: bool,
         image_url: String,
         attributes: Vec<CardAttribute>) -> Card {
 
         Card {
             id: id,
-            uuid: uuid,
-            name: name,
+            title: title,
+            subtitle: subtitle,
+            description: description,
             toptrump: toptrump,
             image_url: image_url,
             attributes: attributes,
@@ -39,9 +42,17 @@ impl Card {
 
     }
 
+    pub fn get_attributes(&self) -> &Vec<CardAttribute> {
+        &self.attributes
+    } 
+
+    pub fn get_title(&self) -> &String {
+        &self.title
+    }
+
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct CardAttribute {
     attribute: Attribute,
     value: i32,
@@ -59,6 +70,14 @@ impl CardAttribute {
             value: value,
         }
 
+    }
+
+    pub fn get_attribute(&self) -> &Attribute {
+        &self.attribute
+    }
+
+    pub fn get_value(&self) -> &i32 {
+        &self.value
     }
 
 }
