@@ -1,6 +1,7 @@
 mod cards;
 mod usecases;
 
+use cards::models::Deck;
 use cards::models::Card;
 use cards::models::CardAttribute;
 use cards::models::Attribute;
@@ -9,8 +10,22 @@ use usecases::compare_two_cards_usecase;
 use usecases::shuffle_deck_usecase;
 
 fn main() {
-    compare_two_cards_usecase::execute(&card1(), &card2(), &Attribute::DEVELOPMENT);
-    shuffle_deck_usecase::execute(vec![card1(),card2(),card3()]);
+    // compare_two_cards_usecase::execute(&card1(), &card2(), &Attribute::DEVELOPMENT);
+    // shuffle_deck_usecase::execute(vec![card1(),card2(),card3()]);
+    let mut deck = Deck::new();
+    println!("deck is {:?}", deck);
+    deck.remove_card();
+    deck.remove_card();
+    deck.remove_card();
+    println!(" ");
+    println!(" ");
+    println!(" ");
+    println!("deck is {:?}", deck);
+    deck.add_card(card1());
+    println!(" ");
+    println!(" ");
+    println!(" ");
+    println!("deck is {:?}", deck);
 }
 
 fn card1() -> Card {
@@ -68,9 +83,4 @@ fn card3() -> Card {
             CardAttribute::new(Attribute::DEVELOPMENT, 4),
         ],
     )
-}
-
-
-fn game() {
-
 }
