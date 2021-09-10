@@ -1,13 +1,13 @@
-use crate::Card;
-use rand::thread_rng;
+use crate::Deck;
 use rand::seq::SliceRandom;
+use rand::thread_rng;
 
-pub fn execute(mut cards: Vec<Card>) -> Vec<Card> {
-    cards.shuffle(&mut thread_rng());
-    cards
+pub fn execute(mut deck: Deck) -> Deck {
+    deck.cards.shuffle(&mut thread_rng());
+    deck
 }
 
-#[cfg(test)] 
+#[cfg(test)]
 mod test {
 
     use super::*;
@@ -16,39 +16,10 @@ mod test {
     fn shuffling() {
         let original = mock_deck();
         let shuffled = execute(mock_deck());
-        assert_ne!(shuffled, original);
+        assert_ne!(shuffled.cards, original.cards);
     }
 
-    fn mock_deck() -> Vec<Card> {
-        vec![
-            Card::new(
-                String::from("1"),
-                String::from("Star Platinum"),
-                String::from("Jotaro"),
-                String::from("some desc"),
-                false,
-                String::from("image"),
-                vec![],
-            ),
-            Card::new(
-                String::from("2"),
-                String::from("Hierophant Green"),
-                String::from("Kakyoin"),
-                String::from("some desc"),
-                false,
-                String::from("image"),
-                vec![],
-            ),
-            Card::new(
-                String::from("3"),
-                String::from("Magician Red"),
-                String::from("Avdol"),
-                String::from("some desc"),
-                false,
-                String::from("image"),
-                vec![],
-            )
-        ]
+    fn mock_deck() -> Deck {
+        Deck::new()
     }
-
 }

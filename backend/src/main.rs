@@ -10,8 +10,7 @@ use usecases::compare_two_cards_usecase;
 use usecases::shuffle_deck_usecase;
 
 fn main() {
-    // compare_two_cards_usecase::execute(&card1(), &card2(), &Attribute::DEVELOPMENT);
-    // shuffle_deck_usecase::execute(vec![card1(),card2(),card3()]);
+    
     let mut deck = Deck::new();
     println!("deck is {:?}", deck);
     deck.remove_card();
