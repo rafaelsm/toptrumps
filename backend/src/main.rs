@@ -11,20 +11,18 @@ use usecases::shuffle_deck_usecase;
 
 fn main() {
     
+    testGame()
+    
+}
+
+fn testGame() {
+
     let mut deck = Deck::new();
-    println!("deck is {:?}", deck);
-    deck.remove_card();
-    deck.remove_card();
-    deck.remove_card();
-    println!(" ");
-    println!(" ");
-    println!(" ");
-    println!("deck is {:?}", deck);
-    deck.add_card(card1());
-    println!(" ");
-    println!(" ");
-    println!(" ");
-    println!("deck is {:?}", deck);
+    deck = shuffle_deck_usecase::execute(deck);
+    let (cards1, cards2)= deck.split();
+    println!("vec1DECK: {:?}", cards1);
+    println!("vec2DECK: {:?}", cards2);
+
 }
 
 fn card1() -> Card {
@@ -83,3 +81,19 @@ fn card3() -> Card {
         ],
     )
 }
+
+
+// let mut deck = Deck::new();
+//     println!("deck is {:?}", deck);
+//     deck.remove_card();
+//     deck.remove_card();
+//     deck.remove_card();
+//     println!(" ");
+//     println!(" ");
+//     println!(" ");
+//     println!("deck is {:?}", deck);
+//     deck.add_card(card1());
+//     println!(" ");
+//     println!(" ");
+//     println!(" ");
+//     println!("deck is {:?}", deck);
