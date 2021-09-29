@@ -7,8 +7,6 @@ pub fn execute<'a>(
     second_card: &'a Card,
     attribute: &Attribute,
 ) -> Option<&'a Card> {
-
-    println!("attr to compare {:?}", attribute);
     
     let a1 = find_attribute(first_card, attribute);
     let a2 = find_attribute(second_card, attribute);

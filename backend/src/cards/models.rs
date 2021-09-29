@@ -62,7 +62,7 @@ impl CardAttribute {
 
     pub fn new(
         attribute: Attribute, 
-        value: i32
+        value: i32,
     ) -> CardAttribute {
 
         CardAttribute {
@@ -90,7 +90,7 @@ pub struct Deck {
 impl Deck {
 
     pub fn add_card(&mut self, card: Card) {
-        self.cards.push(card)
+        self.cards.insert(self.cards.len() - 1, card)
     }
 
     pub fn remove_card(&mut self) {
@@ -102,6 +102,14 @@ impl Deck {
         let half = Deck { cards: cards1.to_vec() };
         let otherHalf = Deck { cards: cards2.to_vec() };
         (half, otherHalf)
+    }
+
+    pub fn isEmpty(&self) -> bool {
+        self.cards.len() <= 0
+    }
+
+    pub fn  draw(&mut self) -> Card {
+        self.cards.pop().unwrap()
     }
 
     fn newWith(cards: Vec<Card>) -> Deck {
@@ -153,7 +161,7 @@ impl Deck {
                     false,
                     String::from("image"),
                     vec![
-                        CardAttribute::new(Attribute::POWER, 5),
+                        CardAttribute::new(Attribute::POWER, 4),
                         CardAttribute::new(Attribute::SPEED, 6),
                         CardAttribute::new(Attribute::RANGE, 9),
                         CardAttribute::new(Attribute::STAMINA, 8),
@@ -169,7 +177,7 @@ impl Deck {
                     false,
                     String::from("image"),
                     vec![
-                        CardAttribute::new(Attribute::POWER, 5),
+                        CardAttribute::new(Attribute::POWER, 3),
                         CardAttribute::new(Attribute::SPEED, 6),
                         CardAttribute::new(Attribute::RANGE, 9),
                         CardAttribute::new(Attribute::STAMINA, 8),
@@ -185,7 +193,7 @@ impl Deck {
                     false,
                     String::from("image"),
                     vec![
-                        CardAttribute::new(Attribute::POWER, 5),
+                        CardAttribute::new(Attribute::POWER, 2),
                         CardAttribute::new(Attribute::SPEED, 6),
                         CardAttribute::new(Attribute::RANGE, 9),
                         CardAttribute::new(Attribute::STAMINA, 8),
@@ -217,7 +225,7 @@ impl Deck {
                     false,
                     String::from("image"),
                     vec![
-                        CardAttribute::new(Attribute::POWER, 5),
+                        CardAttribute::new(Attribute::POWER, 6),
                         CardAttribute::new(Attribute::SPEED, 8),
                         CardAttribute::new(Attribute::RANGE, 9),
                         CardAttribute::new(Attribute::STAMINA, 7),
@@ -233,7 +241,7 @@ impl Deck {
                     false,
                     String::from("image"),
                     vec![
-                        CardAttribute::new(Attribute::POWER, 5),
+                        CardAttribute::new(Attribute::POWER, 7),
                         CardAttribute::new(Attribute::SPEED, 8),
                         CardAttribute::new(Attribute::RANGE, 9),
                         CardAttribute::new(Attribute::STAMINA, 7),
@@ -249,7 +257,7 @@ impl Deck {
                     false,
                     String::from("image"),
                     vec![
-                        CardAttribute::new(Attribute::POWER, 5),
+                        CardAttribute::new(Attribute::POWER, 8),
                         CardAttribute::new(Attribute::SPEED, 8),
                         CardAttribute::new(Attribute::RANGE, 9),
                         CardAttribute::new(Attribute::STAMINA, 7),
@@ -265,7 +273,7 @@ impl Deck {
                     false,
                     String::from("image"),
                     vec![
-                        CardAttribute::new(Attribute::POWER, 6),
+                        CardAttribute::new(Attribute::POWER, 0),
                         CardAttribute::new(Attribute::SPEED, 6),
                         CardAttribute::new(Attribute::RANGE, 4),
                         CardAttribute::new(Attribute::STAMINA, 10),

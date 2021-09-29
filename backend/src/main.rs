@@ -20,9 +20,33 @@ fn testGame() {
     let mut deck = Deck::new();
     deck = shuffle_deck_usecase::execute(deck);
     let (cards1, cards2)= deck.split();
-    println!("vec1DECK: {:?}", cards1);
-    println!("vec2DECK: {:?}", cards2);
+    // println!("vec1DECK: {:?}", cards1);
+    // println!("vec2DECK: {:?}", cards2);
 
+    play(cards1, cards2)
+
+}
+
+fn play(mut deck1: Deck, mut deck2: Deck) {
+    
+    while deck1.isEmpty() == false && deck2.isEmpty() == false {
+        println!("deck1 len = {:?}, deck2 len = {:?}", deck1.cards.len(), deck2.cards.len());
+        let a = deck1.draw();
+        let b = deck2.draw();
+
+        let winner = compare_two_cards_usecase::execute(&a, &b, &Attribute::POWER);
+        println!("Fight - POWER! {:?} vs {:?} -> {:?}", a.get_title(), b.get_title(), winner.unwrap().get_title());
+
+        if winner.unwrap().get_title() == a.get_title() {
+            deck1.add_card(a);
+            deck1.add_card(b);
+        } else {
+            deck2.add_card(a);
+            deck2.add_card(b);
+        }
+    }
+
+    println!("deck1 len = {:?}, deck2 len = {:?}", deck1.cards.len(), deck2.cards.len());
 }
 
 fn card1() -> Card {
@@ -53,7 +77,7 @@ fn card2() -> Card {
         false,
         String::from("image"),
         vec![
-            CardAttribute::new(Attribute::POWER, 9),
+            CardAttribute::new(Attribute::POWER, 4),
             CardAttribute::new(Attribute::SPEED, 10),
             CardAttribute::new(Attribute::RANGE, 10),
             CardAttribute::new(Attribute::STAMINA, 4),
@@ -72,7 +96,7 @@ fn card3() -> Card {
         false,
         String::from("image"),
         vec![
-            CardAttribute::new(Attribute::POWER, 5),
+            CardAttribute::new(Attribute::POWER, 3),
             CardAttribute::new(Attribute::SPEED, 6),
             CardAttribute::new(Attribute::RANGE, 9),
             CardAttribute::new(Attribute::STAMINA, 8),
@@ -81,19 +105,3 @@ fn card3() -> Card {
         ],
     )
 }
-
-
-// let mut deck = Deck::new();
-//     println!("deck is {:?}", deck);
-//     deck.remove_card();
-//     deck.remove_card();
-//     deck.remove_card();
-//     println!(" ");
-//     println!(" ");
-//     println!(" ");
-//     println!("deck is {:?}", deck);
-//     deck.add_card(card1());
-//     println!(" ");
-//     println!(" ");
-//     println!(" ");
-//     println!("deck is {:?}", deck);
